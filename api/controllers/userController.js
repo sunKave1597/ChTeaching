@@ -18,7 +18,6 @@ exports.getUsers = async (req, res) => {
   }
 };
 
-// READ ONE
 exports.getUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
