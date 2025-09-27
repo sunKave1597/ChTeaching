@@ -10,4 +10,4 @@ const wordSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Word', wordSchema);
+module.exports = mongoose.model('word', wordSchema);
