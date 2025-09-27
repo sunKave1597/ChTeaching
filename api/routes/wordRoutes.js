@@ -6,13 +6,14 @@ const {
   updateWord,
   deleteWord
 } = require('../controllers/wordController');
+const { protect } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.post('/', createWord);
-router.get('/', getWords);
-router.get('/:id', getWord);
-router.put('/:id', updateWord);
+router.post('/', protect , createWord);
+router.get('/', protect, getWords);
+router.get('/:id', protect, getWord);
+router.put('/:id', protect, updateWord);
 router.delete('/:id', deleteWord);
 
 module.exports = router;
