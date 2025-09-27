@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path");
+const userController = require("./controllers/userController");');
+
 dotenv.config();
 const app = express();
 
@@ -23,11 +25,12 @@ const connectDB = async () => {
 
 connectDB();
 
-
 app.get("/", (req, res) => {
     res.send("API is running and MongoDB is connected 🚀");
 });
+app.get("/api/users", userController.getUsers);
+app.post("/api/users", userController.createUser);
+app.put("/api/users/:id", userController.updateUser);
 
-const userRoutes = require("./routes/userRoutes"); 
-app.use("/api/users", userRoutes);
+
 module.exports = app;
