@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path");
-const userController = require("./controllers/userController");');
+const userController = require("./controllers/userController");
 
 dotenv.config();
 const app = express();
