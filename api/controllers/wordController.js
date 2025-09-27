@@ -2,8 +2,8 @@ const Word = require('../models/Word');
 
 exports.createWord = async (req, res) => {
   try {
-    const { chWord, pinYin, thWord, image } = req.body;
-    const word = await Word.create({ chWord, pinYin, thWord, image });
+    const { chWord, pinYin, thWord , category, image } = req.body;
+    const word = await Word.create({ chWord, pinYin, thWord, category, image });
     res.status(201).json(word);
   } catch (err) {
     res.status(400).json({ message: err.message });
