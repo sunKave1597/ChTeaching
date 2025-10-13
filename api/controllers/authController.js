@@ -25,6 +25,7 @@ exports.registerUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
+  res.send("Call Login");
   try {
     const user = await User.findOne({ email });
     if (user && (await user.matchPassword(password))) {
