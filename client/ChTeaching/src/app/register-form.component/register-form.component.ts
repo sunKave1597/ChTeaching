@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../env';
 
 @Component({
   selector: 'app-register-form',
@@ -54,15 +56,30 @@ export class RegisterFormComponent {
   password: string = '';
   confirmPassword: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   onRegisterClick() {
-    console.log('Register button clicked:', { username: this.username, email: this.email, password: this.password, confirmPassword: this.confirmPassword });
-    // เพิ่ม logic การสมัครสมาชิกที่นี่ (เช่น ตรวจสอบรหัสผ่านตรงกัน)
-    this.router.navigateByUrl('/home').then(success => {
-      console.log('Navigation success:', success);
-    }).catch(error => {
-      console.error('Navigation error:', error);
+    if (this.password !== this.confirmPassword) {
+      console.error('Passwords do not match');
+      return;
+    }
+
+    const registerData = {
+      name: this.username,
+      email: this.email,
+      password: this.password
+    };
+
+    this.http.post(`${environment.apiUrl}/auth/register`, registerData).subscribe({
+      next: (response) => {
+        console.log('Registration successful:', response);
+        this.router.navigateByUrl('/login').then(success => {
+          console.log('Navigation success:', success);
+        });
+      },
+      error: (error) => {
+        console.error('Registration error:', error);
+      }
     });
   }
 }

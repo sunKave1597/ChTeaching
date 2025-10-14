@@ -21,6 +21,6 @@ import { FooterComponent } from '../footer-component/footer-component';
   `
 })
 export class MainContainerComponent {
-  protected readonly showHeader = signal(false);
-  protected readonly showFooter = signal(false);
+  protected readonly showHeader = signal(true);
+  protected readonly showFooter = signal(true);
 }
