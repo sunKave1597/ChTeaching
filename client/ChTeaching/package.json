@@ -13,14 +13,11 @@
     "printWidth": 100,
     "singleQuote": true,
     "overrides": [
-      {
-        "files": "*.html",
-        "options": { "parser": "angular" }
-      }
+      { "files": "*.html", "options": { "parser": "angular" } }
     ]
   },
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
   },
   "dependencies": {
     "@angular/common": "^20.3.0",
