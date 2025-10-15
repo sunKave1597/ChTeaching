@@ -3,6 +3,6 @@
   "private": true,
   "engines": { "node": "22.x" },
   "scripts": {
-    "build": "npm ci && npm run build"
+    "build": "cd ChTeaching && npm ci && npm run build"
   }
 }
