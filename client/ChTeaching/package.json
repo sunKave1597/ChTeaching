@@ -1,11 +1,12 @@
 {
   "name": "ch-teaching",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "build": "ng build --configuration=production",
+    "watch": "ng build --watch --configuration=development",
     "test": "ng test"
   },
   "prettier": {
@@ -14,13 +15,13 @@
     "overrides": [
       {
         "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
+        "options": { "parser": "angular" }
       }
     ]
   },
-  "private": true,
+  "engines": {
+    "node": "18.x"
+  },
   "dependencies": {
     "@angular/common": "^20.3.0",
     "@angular/compiler": "^20.3.0",
