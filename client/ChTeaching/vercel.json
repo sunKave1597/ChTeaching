@@ -1,11 +1,7 @@
 {
-  "framework": "none",
   "buildCommand": "npm run build",
-  "outputDirectory": "client/ChTeaching/dist/ChTeaching/browser",
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/.*", "dest": "/index.html" }
+  "outputDirectory": "ChTeaching/dist/ChTeaching/browser",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
