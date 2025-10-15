@@ -6,8 +6,12 @@ const generateToken = (id) => {
 };
 
 exports.registerUser = async (req, res) => {
-  const { name, email, password, age } = req.body;
+  let { name, email, password, age } = req.body;
+
   try {
+    // แปลง email เป็นตัวพิมพ์เล็ก
+    email = email.toLowerCase().trim();
+
     const exists = await User.findOne({ email });
     if (exists) return res.status(400).json({ message: "Email already exists" });
 
@@ -24,9 +28,11 @@ exports.registerUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
-  const { email, password } = req.body;
-  res.send("Call Login");
+  let { email, password } = req.body;
   try {
+    // แปลง email เป็นตัวพิมพ์เล็ก
+    email = email.toLowerCase().trim();
+
     const user = await User.findOne({ email });
     if (user && (await user.matchPassword(password))) {
       res.json({
