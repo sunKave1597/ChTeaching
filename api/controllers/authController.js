@@ -8,10 +8,10 @@ const generateToken = (id) => {
 exports.registerUser = async (req, res) => {
   let { name, email, password, age } = req.body;
   try {
-    email = email.toLowerCase().trim();
-    const exists = await User.findOne({ email });
+    emailLower = email.toLowerCase().trim();
+    const exists = await User.findOne({ email : emailLower });
     if (exists) return res.status(400).json({ message: "Email already exists" });
-    const user = await User.create({ name, email, password, age });
+    const user = await User.create({ name, email: emailLower, password, age });
     res.status(201).json({
       _id: user.id,
       name: user.name,
@@ -26,8 +26,8 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
   try {
     const { password } = req.body;
-    const email = req.body.email.toLowerCase().trim(); 
-    const user = await User.findOne({ email });
+    const emailLower = req.body.email.toLowerCase().trim();
+    const user = await User.findOne({ email: emailLower });
     if (user && (await user.matchPassword(password))) {
       res.json({
         _id: user.id,
