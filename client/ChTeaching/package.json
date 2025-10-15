@@ -16,9 +16,7 @@
       { "files": "*.html", "options": { "parser": "angular" } }
     ]
   },
-  "engines": {
-    "node": "22.x"
-  },
+  "engines": { "node": "22.x" },
   "dependencies": {
     "@angular/common": "^20.3.0",
     "@angular/compiler": "^20.3.0",

@@ -1,5 +1,8 @@
 {
-  "dependencies": {
-    "bootstrap": "^5.3.8"
+  "name": "root-build",
+  "private": true,
+  "engines": { "node": "22.x" },
+  "scripts": {
+    "build": "cd client/ChTeaching && npm ci && npm run build"
   }
 }
