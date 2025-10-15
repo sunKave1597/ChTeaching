@@ -29,7 +29,7 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
   let { email, password } = req.body;
   try {
-    emailLower = email.toLowerCase().trim();
+    emailLower = email.toLowerCase().trim();  
 
     const user = await User.findOne({ email: emailLower });
     if (user && (await user.matchPassword(password))) {
