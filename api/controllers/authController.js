@@ -9,7 +9,6 @@ exports.registerUser = async (req, res) => {
   let { name, email, password, age } = req.body;
 
   try {
-    // แปลง email เป็นตัวพิมพ์เล็ก
     email = email.toLowerCase().trim();
 
     const exists = await User.findOne({ email });
@@ -30,10 +29,9 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
   let { email, password } = req.body;
   try {
-    // แปลง email เป็นตัวพิมพ์เล็ก
-    email = email.toLowerCase().trim();
+    emailLower = email.toLowerCase().trim();
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: emailLower });
     if (user && (await user.matchPassword(password))) {
       res.json({
         _id: user.id,
