@@ -27,11 +27,11 @@ exports.registerUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
-  let { email, password } = req.body;
   try {
-    emailLower = email.toLowerCase().trim();  
+    const { password } = req.body;
+    const email = req.body.email.toLowerCase().trim(); 
 
-    const user = await User.findOne({ email: emailLower });
+    const user = await User.findOne({ email });
     if (user && (await user.matchPassword(password))) {
       res.json({
         _id: user.id,
@@ -46,6 +46,7 @@ exports.loginUser = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
 
 exports.getProfile = async (req, res) => {
   try {
