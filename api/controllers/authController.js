@@ -7,15 +7,10 @@ const generateToken = (id) => {
 
 exports.registerUser = async (req, res) => {
   let { name, email, password, age } = req.body;
-
   try {
     email = email.toLowerCase().trim();
-
-    
-
     const exists = await User.findOne({ email });
     if (exists) return res.status(400).json({ message: "Email already exists" });
-
     const user = await User.create({ name, email, password, age });
     res.status(201).json({
       _id: user.id,
@@ -32,7 +27,6 @@ exports.loginUser = async (req, res) => {
   try {
     const { password } = req.body;
     const email = req.body.email.toLowerCase().trim(); 
-
     const user = await User.findOne({ email });
     if (user && (await user.matchPassword(password))) {
       res.json({
