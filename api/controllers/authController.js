@@ -11,6 +11,8 @@ exports.registerUser = async (req, res) => {
   try {
     email = email.toLowerCase().trim();
 
+    
+
     const exists = await User.findOne({ email });
     if (exists) return res.status(400).json({ message: "Email already exists" });
 
@@ -32,7 +34,6 @@ exports.loginUser = async (req, res) => {
     const email = req.body.email.toLowerCase().trim(); 
 
     const user = await User.findOne({ email });
-    console.log(email);
     if (user && (await user.matchPassword(password))) {
       res.json({
         _id: user.id,
