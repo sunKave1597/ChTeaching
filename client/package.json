@@ -1,8 +1,0 @@
-{
-  "name": "root-build",
-  "private": true,
-  "engines": { "node": "22.x" },
-  "scripts": {
-    "build": "cd ChTeaching && npm ci && npm run build"
-  }
-}
