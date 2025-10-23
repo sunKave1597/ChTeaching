@@ -22,6 +22,7 @@ const QuestionSchema = new mongoose.Schema({
 
 const QuizSchema = new mongoose.Schema({
   title: { type: String, required: true, trim: true, index: true },
+  category: { type: String, required: true, trim: true },
   questions: { type: [QuestionSchema], required: true }
 }, { timestamps: true });
 

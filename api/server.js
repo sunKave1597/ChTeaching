@@ -8,6 +8,7 @@ const authRoutes = require("./routes/authRoutes");
 const wordRoutes = require("./routes/wordRoutes");
 const quizRoutes = require("./routes/quizRoutes");
 const quizAttemptRoutes = require("./routes/quizAttemptRoutes");
+const quizHistoryRoutes = require("./routes/quizHistoryRoutes");
 
 dotenv.config();
 connectDB();
@@ -22,6 +23,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/words", wordRoutes);
 app.use("/api/quizzes", quizRoutes);
 app.use("/api/quiz-attempts", quizAttemptRoutes);
+app.use("/api/quiz-history", quizHistoryRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));

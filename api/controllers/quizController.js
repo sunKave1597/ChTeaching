@@ -19,21 +19,16 @@ exports.createQuiz = async (req, res, next) => {
 
 exports.getQuizzes = async (req, res, next) => {
   try {
-    const page = Math.max(1, parseInt(req.query.page || '1', 10));
-    const limit = Math.max(1, Math.min(100, parseInt(req.query.limit || '20', 10)));
-    const skip = (page - 1) * limit;
-
+    const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const filter = {};
     if (req.query.q) filter.title = new RegExp(escapeRegex(req.query.q), 'i');
+    if (req.query.category) filter.category = new RegExp(escapeRegex(req.query.category), 'i');
 
-    const [items, total] = await Promise.all([
-      Quiz.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit).lean(),
-      Quiz.countDocuments(filter),
-    ]);
-
-    res.json({ page, limit, total, pages: Math.ceil(total / limit) || 1, items });
+    const items = await Quiz.find(filter).sort({ createdAt: -1 }).lean();
+    return res.json(items); // 👈 ส่ง array เปล่า ๆ
   } catch (err) { next(err); }
 };
+
 
 exports.getQuizById = async (req, res, next) => {
   try {
