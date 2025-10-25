@@ -7,6 +7,7 @@ const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
 const wordRoutes = require("./routes/wordRoutes");
 const quizRoutes = require("./routes/quizRoutes");
+const quizImageRoutes = require("./routes/quizImageRoutes");
 const quizAttemptRoutes = require("./routes/quizAttemptRoutes");
 const quizHistoryRoutes = require("./routes/quizHistoryRoutes");
 
@@ -22,6 +23,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/words", wordRoutes);
 app.use("/api/quizzes", quizRoutes);
+app.use("/api/quiz-images", quizImageRoutes);
 app.use("/api/quiz-attempts", quizAttemptRoutes);
 app.use("/api/quiz-history", quizHistoryRoutes);
 

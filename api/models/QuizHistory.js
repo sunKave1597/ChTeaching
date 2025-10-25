@@ -1,21 +1,12 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const historyQuestionSchema = new mongoose.Schema({
-  text: { type: String, required: true },
-  options: [String],
-  answerIndex: Number,
-  userAnswer: Number
-}, { _id: false });
-
-const quizHistorySchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, index: true },
-  quizId: { type: mongoose.Schema.Types.ObjectId, ref: 'Quiz', required: true },
+const QuizHistorySchema = new Schema({
+  userId: { type: Schema.Types.ObjectId, ref: 'User', index: true, required: true }, 
   mode: { type: String, enum: ['pretest', 'game'], required: true },
-  score: { type: Number, default: 0 },
-  total: { type: Number, default: 0 },
-  passed: { type: Boolean, default: false },
-  questions: [historyQuestionSchema],
+  score: { type: Number, required: true },
   playedAt: { type: Date, default: Date.now }
 }, { timestamps: true });
 
-module.exports = mongoose.model('QuizHistory', quizHistorySchema);
+
+module.exports = mongoose.model('QuizHistory', QuizHistorySchema);

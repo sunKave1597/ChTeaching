@@ -1,11 +1,15 @@
+// routes/historyRoutes.js
 const express = require('express');
 const router = express.Router();
-const { protect } = require('../middleware/authMiddleware');
-const ctrl = require('../controllers/quizHistoryController');
+const protech = require('../middleware/authMiddleware').protect;
+const {
+    recordHistory,
+    getMyHistories,
+    getAllHistories 
+ } = require('../controllers/quizHistoryController');
 
-router.post('/', protect, ctrl.recordHistory);
-router.get('/', protect, ctrl.getMyHistories);
-router.get('/all', protect, ctrl.getAllHistories);
-router.get('/:id', protect, ctrl.getHistoryById);
+router.post('/', protech ,recordHistory);
+router.get('/me', protech, getMyHistories);
+router.get('/', getAllHistories);
 
 module.exports = router;

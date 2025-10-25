@@ -1,12 +1,21 @@
+// routes/quizInsertOneRoute.js
 const express = require('express');
 const router = express.Router();
-const { protect } = require('../middleware/authMiddleware');
-const ctrl = require('../controllers/quizController');
+const {
+  insertOneQuestionJson,
+  getRandomByType,
+  getQuizById,
+  deleteQuestionById,
+  updateQuizById,
+  getAllQuizzes
+} = require('../controllers/quizController');
 
-router.post('/', protect, ctrl.createQuiz);
-router.get('/',  ctrl.getQuizzes);
-router.get('/:id', protect, ctrl.getQuizById);
-router.patch('/:id', protect, ctrl.updateQuiz);
-router.delete('/:id', protect, ctrl.deleteQuiz);
+
+router.post('/insert-quiz', insertOneQuestionJson); 
+router.get('/random/:type', getRandomByType);
+router.get('/:id', getQuizById);
+router.delete('/:quizId/questions/:questionId', deleteQuestionById);
+router.patch('/:quizId', updateQuizById);
+router.get('/', getAllQuizzes);
 
 module.exports = router;
