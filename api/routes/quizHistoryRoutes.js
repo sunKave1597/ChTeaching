@@ -6,9 +6,9 @@ const {
     recordHistory,
     getMyHistories,
     getAllHistories 
- } = require('../controllers/quizHistoryController');
+ } = require('../controllers/QuizHistoryController');
 
-router.post('/', protech ,recordHistory);
+router.post('/', protech, recordHistory);
 router.get('/me', protech, getMyHistories);
 router.get('/', getAllHistories);
 
