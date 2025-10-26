@@ -69,22 +69,26 @@ exports.listByQuiz = async (req, res, next) => {
 exports.getByQuestion = async (req, res, next) => {
   try {
     const { questionId } = req.params;
-    const includeData = (req.query.includeData || '').toLowerCase() === 'true';
 
-    const or = [{ questionId }]; 
+    const or = [{ questionId }];
     if (isObjectId(questionId)) {
-      or.push({ questionId: new mongoose.Types.ObjectId(questionId) }); 
+      or.push({ questionId: new mongoose.Types.ObjectId(questionId) });
     }
 
-    const select = '_id quizId kind questionId caption contentType createdAt updatedAt'
-      + (includeData ? ' base64Data' : '');
+    const select = '_id quizId kind questionId caption contentType base64Data createdAt updatedAt';
 
     const doc = await QuizImage.findOne({ $or: or }).select(select).lean();
-    if (!doc) return res.status(404).json({ error: 'Image for this questionId not found' });
+    if (!doc) {
+      return res.status(404).json({ error: 'Image for this questionId not found' });
+    }
 
     res.json(doc);
-  } catch (err) { next(err); }
+  } catch (err) {
+    next(err);
+  }
 };
+
+
 
 
 
