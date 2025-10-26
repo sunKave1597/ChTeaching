@@ -14,7 +14,7 @@ function normalizeImage({ base64Data, mimeType }) {
     return {
       contentType,
       dataUrl: `data:${contentType};base64:${b64}`,
-      size: Math.floor((b64.length * 3) / 4), // approx bytes
+      size: Math.floor((b64.length * 3) / 4), 
     };
   }
 

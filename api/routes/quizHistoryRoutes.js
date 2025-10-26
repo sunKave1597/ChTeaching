@@ -13,3 +13,4 @@ router.get('/me', protech, getMyHistories);
 router.get('/', getAllHistories);
 
 module.exports = router;
+ 

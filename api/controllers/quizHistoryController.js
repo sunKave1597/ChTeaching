@@ -13,7 +13,7 @@ exports.recordHistory = async (req, res, next) => {
       return res.status(400).json({ error: 'score must be a number >= 0' });
 
     const history = await QuizHistory.create({
-      userId: req.user._id,  // ✅ เก็บ id ของผู้เล่น
+      userId: req.user._id, 
       mode,
       score,
       playedAt: new Date()
