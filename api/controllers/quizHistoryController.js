@@ -1,4 +1,5 @@
 const QuizHistory = require('../models/QuizHistory');
+const mongoose = require('mongoose');
 
 exports.recordHistory = async (req, res, next) => {
   try {
